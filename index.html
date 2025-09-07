@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>링크 모음</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header h1 {
+        color: #333;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        color: #666;
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+
+      .links-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr;
+      }
+
+      .link-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .link-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .link-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .link-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .link-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .link-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .link-info {
+        flex: 1;
+      }
+
+      .link-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+      }
+
+      .link-description {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.4;
+      }
+
+      .link-arrow {
+        color: #999;
+        font-size: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .link-card:hover .link-arrow {
+        transform: translateX(4px);
+        color: #667eea;
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 768px) {
+        .container {
+          margin: 10px;
+          padding: 30px 20px;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .link-content {
+          gap: 12px;
+        }
+
+        .link-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+
+        .link-title {
+          font-size: 1.1rem;
+        }
+
+        .link-description {
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        .container {
+          padding: 20px 16px;
+        }
+
+        .header {
+          margin-bottom: 30px;
+        }
+
+        .header h1 {
+          font-size: 1.8rem;
+        }
+
+        .link-card {
+          padding: 16px;
+        }
+
+        .link-content {
+          gap: 10px;
+        }
+
+        .link-icon {
+          width: 36px;
+          height: 36px;
+          font-size: 14px;
+        }
+      }
+
+      /* 다크 모드 지원 */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        }
+
+        .container {
+          background: rgba(26, 32, 44, 0.95);
+        }
+
+        .header h1 {
+          color: #f7fafc;
+        }
+
+        .header p {
+          color: #a0aec0;
+        }
+
+        .link-card {
+          background: #2d3748;
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .link-title {
+          color: #f7fafc;
+        }
+
+        .link-description {
+          color: #a0aec0;
+        }
+
+        .link-arrow {
+          color: #718096;
+        }
+
+        .link-card:hover .link-arrow {
+          color: #667eea;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>리아아카데미</h1>
+      </div>
+
+      <div class="links-grid">
+        <a
+          href="https://a5.cocos77y.com/108"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">1</div>
+            <div class="link-info">
+              <div class="link-title">재테크도 피트니스처럼</div>
+              <!-- <div class="link-description">코드 저장소 및 협업 플랫폼</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+
+        <a
+          href="https://a5.cocos77y.com/2#google_vignette"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">2</div>
+            <div class="link-info">
+              <div class="link-title">리아아카데미는 어떤 기관인가</div>
+              <!-- <div class="link-description">디자인 영감 및 쇼케이스</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+
+        <a
+          href="https://cocos77y.com/322"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">3</div>
+            <div class="link-info">
+              <div class="link-title">안전한 재테크</div>
+              <!-- <div class="link-description">디자인 영감 및 쇼케이스</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+
+        <a
+          href="https://kr.lia-academy.net/main/main.php"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">4</div>
+            <div class="link-info">
+              <div class="link-title">리아아카데미</div>
+              <!-- <div class="link-description">디자인 영감 및 쇼케이스</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+
+        <a
+          href="https://kr.lia-academy.net/main/main.php"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">5</div>
+            <div class="link-info">
+              <div class="link-title">회원가입하기</div>
+              <!-- <div class="link-description">디자인 영감 및 쇼케이스</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+
+        <a
+          href="https://open.kakao.com/o/sSqH4Keh"
+          class="link-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="link-content">
+            <div class="link-icon">6</div>
+            <div class="link-info">
+              <div class="link-title">1:1문의하기</div>
+              <!-- <div class="link-description">디자인 영감 및 쇼케이스</div> -->
+            </div>
+            <div class="link-arrow">→</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
